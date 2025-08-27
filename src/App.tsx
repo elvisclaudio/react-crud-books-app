@@ -5,30 +5,30 @@ import Header from './subcomponents/Header'
 import AddBook from './subcomponents/AddBook'
 import BookList from './subcomponents/ListBooks'
 import Footer from './subcomponents/Footer'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import Book from './subcomponents/Book'
+import AppRoutes from './routes/AppRoutes.tsx'
 
+import BooksData from './Helpers/BooksData'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {
 
 
-  let books = [
-    {id: 1, title: 'Book 1', author: 'Author 1'},
-    {id: 2, title: 'Book 2', author: 'Author 2'},
-    {id: 3, title: 'Book 3', author: 'Author 3'},
-  ]
+
+  let books = BooksData.getBooks();
+
+  console.log(books);
 
   return (
-    <BrowserRouter>
-      <Header/>
-      <Routes>
-        <Route path="/add-book" element={<AddBook/>}/>
-        <Route path="/" element={<BookList books={books}/>}/>
-      </Routes>
-      <Footer/>
-    </BrowserRouter>
+    <Router>
+      <Header />
+      <AppRoutes books={books} authors={[]} />
+      <Footer />
+    </Router>
   )
+
 }
 
 export default App
